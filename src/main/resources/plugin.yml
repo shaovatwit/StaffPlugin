@@ -1,0 +1,17 @@
+name: StaffUtils
+main: com.ventedmc.staff.StaffPlugin
+authors: [Tehker, Longeh]
+version: 1.0-SNAPSHOT
+api-version: 1.13
+commands:
+  mod:
+    description: Enables/Disables Mod Mode.
+    aliases: [modmode, staff]
+    permission: "staffplugin.staff"
+  freeze:
+    description: Freeze Command.
+    permission: "staffplugin.staff"
+  cpscheck:
+    description: Checks the CPS!
+    aliases: [cps]
+    permission: "staffplugin.staff"

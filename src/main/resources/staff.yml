@@ -1,0 +1,60 @@
+staffInventoryItems:
+  1:
+    material: COMPASS
+    name: "&cRandom Teleport"
+    lore:
+      - "&4&l * &cRight-Click &fto teleport to a random player."
+    slot: 0
+    nbtTag: "RANDOM_TELEPORT"
+  2:
+    material: BOOK
+    name: "&cInventory View"
+    lore:
+      - "&4&l * &cRight-Click &fto view the players inventory."
+    slot: 1
+    nbtTag: "INVENTORY_VIEW"
+  3:
+    material: "DIAMOND_SWORD"
+    name: "&cCPS Check"
+    lore:
+      - "&4&l * &cRight-Click &fa player to test their CPS."
+    slot: 4
+    nbtTag: "CPS_CHECK"
+  4:
+    material: "SKULL_ITEM"
+    name: "&cAnti-Cheat Violations"
+    lore:
+      - "&4&l * &cRight-Click &fto view online players violations."
+    slot: 7
+    nbtTag: "ANTI_CHEAT_VIOLATIONS"
+  5:
+    material: "ICE"
+    name: "&cFreeze"
+    lore:
+      - "&4&l * &cRight-Click &fa player to freeze them."
+    slot: 8
+    nbtTag: "FREEZE"
+inventoryViewInterface:
+  name: "&c<player>'s Inventory"
+  size: 54
+  armorSlots:
+    - 36
+    - 37
+    - 38
+    - 39
+  slots:
+    healthIcon:
+      item:
+        material: "SPECKLED_MELON"
+        name: "&c<health> ♥"
+        slot: 42
+    foodIcon:
+      item:
+        material: "COOKED_BEEF"
+        name: "&c<food> Saturation"
+        slot: 43
+    potionIcon:
+      item:
+        material: "POTION"
+        name: "&cActive Potion Effects"
+        slot: 44
