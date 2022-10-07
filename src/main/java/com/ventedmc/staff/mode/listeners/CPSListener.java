@@ -12,7 +12,7 @@ public class CPSListener implements Listener {
     private StaffModeModule staffModeModule;
 
     public CPSListener(StaffModeModule staffModeModule) {
-        staffModeModule = staffModeModule;
+        this.staffModeModule = staffModeModule;
     }
 
     @EventHandler

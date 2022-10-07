@@ -15,3 +15,5 @@ commands:
     description: Checks the CPS!
     aliases: [cps]
     permission: "staffplugin.staff"
+  ticket:
+    description: Test Ticket Command!

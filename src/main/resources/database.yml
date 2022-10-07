@@ -1,0 +1,5 @@
+SQL-IP: "172.18.0.1"
+SQL-PORT: "3306"
+SQL-USER: "username"
+SQL-PASS: "password"
+SQL-DATABASE: "database"

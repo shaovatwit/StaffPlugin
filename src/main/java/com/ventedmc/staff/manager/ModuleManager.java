@@ -4,6 +4,7 @@ import com.ventedmc.staff.StaffPlugin;
 import com.ventedmc.staff.interfaces.ConfigurableModule;
 import com.ventedmc.staff.interfaces.Module;
 import com.ventedmc.staff.mode.StaffModeModule;
+import com.ventedmc.staff.tickets.TicketModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 public class ModuleManager {
     private List<Module> modules = new ArrayList<Module>(){{
         add(new StaffModeModule(StaffPlugin.getInstance()));
+        add(new TicketModule());
     }};
 
     public ModuleManager() {
