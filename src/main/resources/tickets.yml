@@ -1,0 +1,28 @@
+tickets:
+  menus:
+    ticketMainMenu:
+      name: "&4&l[!] &cTickets"
+      size: 27
+      slots:
+        openTickets:
+          item: PAPER
+          name: "&4&l[!] &cOpen Tickets"
+          lore:
+            - " "
+            - "&7&l((Click here to view your open tickets))"
+          slot: 11
+        closedTickets:
+          item: PAPER
+          name: "&4&l[!] &cClosed Tickets"
+          lore:
+            - " "
+            - "&7&l((Click here to view your closed tickets))"
+          slot: 15
+        adminView:
+          item: PAPER
+          name: "&4&l[!] &cView All Tickets"
+          requiredPermission: staffplugin.tickets.view
+          lore:
+            - " "
+            - "&7&l((Click here to view all tickets))"
+          slot: 13

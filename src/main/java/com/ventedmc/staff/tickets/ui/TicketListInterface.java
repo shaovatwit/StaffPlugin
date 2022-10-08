@@ -51,33 +51,44 @@ public class TicketListInterface extends PaginatedMenu {
 
     @Override
     public void onInitialize() {
+        getScreen().setSize(54);
+        // Set the item slot indexes
+        getScreen().updateIndexes(responseSlots);
+        // Setting the next/previous slots
+        getScreen().setPreviousSlot(48);
+        getScreen().setNextSlot(50);
         getL2UI().setCanceledByDefault(true);
+
         setupScreen();
+
+        for (int fillerSlot : fillerSlots) {
+            getScreen().addIcon(fillerSlot, new DefaultIcon(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDurability((short) 15).setName(" ").toItemStack()));
+        }
     }
 
     public void setupScreen() {
         int inventoryIndex = 0;
         for (Ticket ticket : ticketModule.getTicketDataSource().getAllTickets()) {
-//            screen.addIcon(inventoryIndex, new DefaultIcon(new ItemBuilder(Material.PAPER)
-//                    .setName("&4&l[!] &cTicket ID &f- " + ticket.getTicketID())
-//                    .addLoreLine("&4&l * &cCreator: &f" + Bukkit.getOfflinePlayer(ticket.getTicketCreator()).getName())
-//                    .addLoreLine("&4&l * &cSubject: &f" + ticket.getSubject())
-//                    .addLoreLine("&4&l * &cResponses: &f" + ticket.getResponses().size())
-//                    .addLoreLine(" ")
-//                    .addLoreLine("&7&o((Left-Click to add a response))")
-//                    .addLoreLine("&7&o((Right-Click to view responses))")
-//                    .toItemStack()).setActionHandler(action -> {
-//                if (action.getEvent() instanceof InventoryClickEvent) {
-//                    InventoryClickEvent inventoryClickEvent = (InventoryClickEvent) action.getEvent();
-//                    if (inventoryClickEvent.isLeftClick()) {
-//                        ticketModule.getTicketHashMap().put(action.getPlayer().getUniqueId(), ticket);
-//                        getL2UI().kick(action.getPlayer());
-//                        action.getPlayer().sendMessage(ItemUtils.colorize("&4&l(!) &cPlease type a response for this ticket, if this was a mistake type cancel."));
-//                    } else {
-//                        L2UI.getInstance().getRegistrar().getStaticL2UserInterface(new TicketViewInterface(ticket, ticketModule)).join(action.getPlayer());
-//                    }
-//                }
-//            }));
+            getScreen().addToList(new DefaultIcon(new ItemBuilder(Material.PAPER)
+                    .setName("&4&l[!] &cTicket ID &f- " + ticket.getTicketID())
+                    .addLoreLine("&4&l * &cCreator: &f" + Bukkit.getOfflinePlayer(ticket.getTicketCreator()).getName())
+                    .addLoreLine("&4&l * &cSubject: &f" + ticket.getSubject())
+                    .addLoreLine("&4&l * &cResponses: &f" + ticket.getResponses().size())
+                    .addLoreLine(" ")
+                    .addLoreLine("&7&o((Left-Click to add a response))")
+                    .addLoreLine("&7&o((Right-Click to view responses))")
+                    .toItemStack()).setActionHandler(action -> {
+                if (action.getEvent() instanceof InventoryClickEvent) {
+                    InventoryClickEvent inventoryClickEvent = (InventoryClickEvent) action.getEvent();
+                    if (inventoryClickEvent.isLeftClick()) {
+                        ticketModule.getTicketHashMap().put(action.getPlayer().getUniqueId(), ticket);
+                        getL2UI().kick(action.getPlayer());
+                        action.getPlayer().sendMessage(ItemUtils.colorize("&4&l(!) &cPlease type a response for this ticket, if this was a mistake type cancel."));
+                    } else {
+                        L2UI.getInstance().getRegistrar().getStaticL2UserInterface(new TicketViewInterface(ticket, ticketModule)).join(action.getPlayer());
+                    }
+                }
+            }));
         }
     }
 }
