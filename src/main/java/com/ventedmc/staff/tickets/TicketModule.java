@@ -4,8 +4,11 @@ import com.ventedmc.staff.StaffPlugin;
 import com.ventedmc.staff.interfaces.ConfigurableModule;
 import com.ventedmc.staff.interfaces.Module;
 import com.ventedmc.staff.tickets.commands.TicketCommand;
+import com.ventedmc.staff.tickets.handlers.RestHandler;
+import com.ventedmc.staff.tickets.interfaces.Response;
 import com.ventedmc.staff.tickets.interfaces.Ticket;
 import com.ventedmc.staff.tickets.listener.ResponseListener;
+import com.ventedmc.staff.tickets.models.ResponseModel;
 import com.ventedmc.staff.tickets.sql.ResponseDataSource;
 import com.ventedmc.staff.tickets.sql.TicketDataSource;
 import lombok.Getter;
@@ -18,7 +21,11 @@ import org.bukkit.plugin.PluginManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Level;
+
+import static spark.Spark.*;
 
 public class TicketModule implements ConfigurableModule {
     private boolean enabled;
@@ -28,14 +35,16 @@ public class TicketModule implements ConfigurableModule {
         this.enabled = true;
         createTicketConfig();
 
-        this.responseDataSource = new ResponseDataSource(StaffPlugin.getInstance().getDatabaseManager());
-        this.ticketDataSource = new TicketDataSource(StaffPlugin.getInstance().getDatabaseManager(), responseDataSource);
+        this.responseDataSource = new ResponseDataSource(this, StaffPlugin.getInstance().getDatabaseManager());
+        this.ticketDataSource = new TicketDataSource(this, StaffPlugin.getInstance().getDatabaseManager(), responseDataSource);
 
         ticketDataSource.createDefaultTables();
         responseDataSource.createDefaultTables();
 
         StaffPlugin.getInstance().getCommand("ticket").setExecutor(new TicketCommand(this));
         Bukkit.getPluginManager().registerEvents(new ResponseListener(this), StaffPlugin.getInstance());
+
+        this.restHandler = new RestHandler(this); // Initialize the REST API Handler
     }
 
     @Override
@@ -60,6 +69,8 @@ public class TicketModule implements ConfigurableModule {
     private TicketDataSource ticketDataSource;
     @Getter
     private ResponseDataSource responseDataSource;
+    @Getter
+    private RestHandler restHandler;
 
     private void createTicketConfig() {
         ticketConfigFile = new File(StaffPlugin.getInstance().getDataFolder(), "tickets.yml");

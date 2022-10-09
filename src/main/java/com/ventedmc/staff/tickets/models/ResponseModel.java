@@ -7,17 +7,17 @@ import java.util.UUID;
 public class ResponseModel implements Response {
     private Long responseID = null;
     private Long ticketID = null;
-    private UUID responder;
+    private String responder;
     private String response;
 
-    public ResponseModel(Long responseID, Long ticketID, UUID responder, String response) {
+    public ResponseModel(Long responseID, Long ticketID, String responder, String response) {
         this.responseID = responseID;
         this.ticketID = ticketID;
         this.responder = responder;
         this.response = response;
     }
 
-    public ResponseModel(UUID responder, String response) {
+    public ResponseModel(String responder, String response) {
         this.responder = responder;
         this.response = response;
     }
@@ -33,7 +33,7 @@ public class ResponseModel implements Response {
     }
 
     @Override
-    public UUID getResponder() {
+    public String getResponder() {
         return responder;
     }
 

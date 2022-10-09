@@ -72,7 +72,6 @@ public class TicketViewInterface extends PaginatedMenu {
 
     public void setupScreen() {
         for(Response response : ticket.getResponses()) {
-            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(response.getResponder());
             getScreen().addToList(new DefaultIcon(new ItemBuilder(Material.PAPER)
                     .setName("&4&l[!] &cTicket ID &f- " + ticket.getTicketID())
                     .addLoreLine("&4&l * &cCreator: &f" + Bukkit.getOfflinePlayer(ticket.getTicketCreator()).getName())
@@ -80,7 +79,7 @@ public class TicketViewInterface extends PaginatedMenu {
                     .addLoreLine("&4&l * &cResponses: &f" + ticket.getResponses().size())
                     .addLoreLine(" ")
                     .addLoreLine("&4&l[!] &cResponse ID &f- " + response.getResponseID())
-                    .addLoreLine("&4&l * &cResponder: &f" + Bukkit.getOfflinePlayer(response.getResponder()).getName())
+                    .addLoreLine("&4&l * &cResponder: &f" + response.getResponder())
                     .addLoreLine("&4&l * &cResponse: &f" + response.getResponse())
                     .toItemStack()));
         }

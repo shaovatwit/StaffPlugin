@@ -8,7 +8,7 @@ public interface Response {
 
     long getTicketID();
 
-    UUID getResponder();
+    String getResponder();
 
     String getResponse();
 

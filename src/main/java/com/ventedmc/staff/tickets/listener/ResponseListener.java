@@ -29,7 +29,7 @@ public class ResponseListener implements Listener {
             Ticket ticket = ticketModule.getTicketHashMap().get(e.getPlayer().getUniqueId());
 
             // Submit Response
-            Response response = new ResponseModel(e.getPlayer().getUniqueId(), e.getMessage());
+            Response response = new ResponseModel(e.getPlayer().getName(), e.getMessage());
             ticketModule.getResponseDataSource().insertResponse(ticket, response);
             e.setCancelled(true);
 
